@@ -1,22 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from '../pages/HomePage';
-import Login from '../pages/LoginPage';
-import Header from '../components/Header';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Home from '../pages/Home';
+import Login from '../pages/Login';
 import Footer from '../components/Footer';
+import User from '../pages/User';
 
-
-const Router = () => {
+const RouterApp = () => {
     return (
         <Router>
-            <Header />
+            
             <Routes>
 
-                <Route path="/" component={Home} />
-                <Route path="/login" component={Login} />
-                
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="*" element={<Navigate to="/" />} />
+                <Route path="/user" element={<User />} />
             </Routes>
             <Footer />
         </Router>
     );
 }
+
+export default RouterApp;

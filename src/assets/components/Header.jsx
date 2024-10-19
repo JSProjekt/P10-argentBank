@@ -1,12 +1,14 @@
 import React from 'react';
 import argentBankLogo from "../images/argentBankLogo.png";
-import { Navlink } from 'react-router-dom';
+import { Navlink, useLocation } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({firstName}) => {
+    const location = useLocation();
+    const isPageUser = location.pathname === "/user";
     return (
         <header>
             <nav className="main-nav">
-      <a className="main-nav-logo" href="./index.html">
+      <a className="main-nav-logo" href="/">
         <img
           className="main-nav-logo-image"
           src={argentBankLogo}
@@ -15,10 +17,22 @@ const Header = () => {
         <h1 className="sr-only">Argent Bank</h1>
       </a>
       <div>
+        {isPageUser ? (
+          <div className='Info-user'>
+            <span className='name-user'>
+              <i className="fa fa-user-circle"></i> {firstName}
+              </span>
+              <Navlink className="main-nav-item" to="/logout">
+                <i className="fa fa-user-out"></i>
+                Sign Out
+              </Navlink>
+          </div>
+        ) : (
         <Navlink className="main-nav-item" to="/login">
           <i className="fa fa-user-circle"></i>
           Sign In
         </Navlink>
+        )}
       </div>
     </nav>
         </header>
