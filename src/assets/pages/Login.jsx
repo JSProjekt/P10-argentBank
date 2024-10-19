@@ -3,40 +3,28 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
 import Header from "../components/Header";
+import { userLogin, selectUserInfo, selectLoading, selectError } from "../../redux/reducers/userSlices";
 
 
 const Login = () => {
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+    const error = useSelector(selectError);
+    const loading = useSelector(selectLoading);
+    const userInfo = useSelector(selectUserInfo);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    
 
     const trySubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
-        setError("");
-
         try {
-            const response = await axios.post("http://localhost:3001/api/v1/user/login", {
-                email,
-                password,
-            });
-            setSuccess(true);
-            setLoading(false);
-
-            localStorage.setItem("token", response.data.token);
-            navigate("/user");
-
-        } catch (error) {
-            setError("Invalid email or password");
-            setLoading(false);
-        }
+           await dispatch(userLogin({ email, password })).unwrap();
+           if (userInfo) {
+               navigate("/user");
+           }
+        } catch (error) {}
     };
-
 
     return (
         <>
@@ -45,10 +33,7 @@ const Login = () => {
             <section className="sign-in-content">
                 <i className="fa fa-user-circle sign-in-icon"></i>
                 <h1>Sign In</h1>
-
                 {error && <p className="error-message">{error}</p>}
-                {success && <p className="success-message">{success}</p>}
-
 
                 <form onSubmit={trySubmit}>
                     <div className="input-wrapper">
@@ -58,6 +43,7 @@ const Login = () => {
                             id="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Email"
                             required
                         />
                     </div>
@@ -68,6 +54,7 @@ const Login = () => {
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Password"
                             required                            
                             />
                     </div>

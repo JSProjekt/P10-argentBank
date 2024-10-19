@@ -1,6 +1,6 @@
 import React from 'react';
 import argentBankLogo from "../images/argentBankLogo.png";
-import { Navlink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const Header = ({firstName}) => {
     const location = useLocation();
@@ -22,16 +22,16 @@ const Header = ({firstName}) => {
             <span className='name-user'>
               <i className="fa fa-user-circle"></i> {firstName}
               </span>
-              <Navlink className="main-nav-item" to="/logout">
+              <NavLink className="main-nav-item" to="/logout">
                 <i className="fa fa-user-out"></i>
                 Sign Out
-              </Navlink>
+              </NavLink>
           </div>
         ) : (
-        <Navlink className="main-nav-item" to="/login">
+        <NavLink className="main-nav-item" to="/login">
           <i className="fa fa-user-circle"></i>
           Sign In
-        </Navlink>
+        </NavLink>
         )}
       </div>
     </nav>
