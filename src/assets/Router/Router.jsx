@@ -5,17 +5,18 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Footer from '../components/Footer';
 import User from '../pages/User';
+import RouteSecure from '../components/RouteSecure';
 
 const RouterApp = () => {
     return (
         <Router>
-            
+
             <Routes>
 
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="*" element={<Navigate to="/" />} />
-                <Route path="/user" element={<User />} />
+                <Route path="/user" element={<RouteSecure><User /></RouteSecure>} />
             </Routes>
             <Footer />
         </Router>
