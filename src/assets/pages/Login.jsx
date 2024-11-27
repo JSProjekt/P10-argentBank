@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/Header";
-import { userLogin, selectUserInfo, selectLoading, selectError } from "../../redux/reducers/userSlices";
+import { userLogin, selectUserInfo, selectLoading, selectError } from "../../redux/reducers/UserSlices";
 
 
 const Login = () => {

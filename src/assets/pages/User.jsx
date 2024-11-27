@@ -3,7 +3,7 @@ import Account from '../components/Account';
 import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserInfo, userUpdate, userLogout } from '../../redux/reducers/userSlices';
+import { getUserInfo, userUpdate, userLogout } from '../../redux/reducers/UserSlices';
 import { useNavigate } from 'react-router-dom';
 
 const User = () => {

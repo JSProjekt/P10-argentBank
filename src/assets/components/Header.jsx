@@ -1,7 +1,7 @@
 import React from 'react';
 import argentBankLogo from "../img/argentBankLogo.png";
 import { NavLink } from 'react-router-dom';
-import { userLogout } from '../../redux/reducers/userSlices';
+import { userLogout } from '../../redux/reducers/UserSlices';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Header = ({ firstName }) => {
