@@ -38,7 +38,7 @@ export const userLogin = createAsyncThunk(
         userInfo: userInfoResp.data.body
       };
     } catch (error) {
-      return rejectWithValue(error.responce?.data.message || error.message);
+      return rejectWithValue(error.response?.data.message || error.message);
     }
   }
 );
